@@ -58,7 +58,7 @@ class VNZipcode extends ODInstance {
                 AND 
                 es_zipcode.lng <= ${lng + zoom_float}
                 )`)
-                .configQueryLimit(start, 5);
+                .configQueryLimit(start, 10);
 
 
 
