@@ -141,7 +141,7 @@ class ESZipcodeAction {
             let end = first_end;
 
             let result_list = point_list;
-            console.log('BEFORE WHILE', result_list.length);
+            // console.log('BEFORE WHILE', result_list.length);
             while (end < count) {
 
                 const {record_list: next_list, end: next_end} = await ESPoint.findPointListWithLine(
@@ -156,7 +156,7 @@ class ESZipcodeAction {
 
             // console.log(point_list);
             // console.log(point_list.length);
-            console.log('AFTER WHILE', result_list.length);
+            // console.log('AFTER WHILE', result_list.length);
             return result_list;
         } catch (e) {
             throw e;
