@@ -52,6 +52,7 @@ class VNPoint extends ODInstance {
                 .configComplexConditionQueryItem('es_point', 'area_id', area_id)
                 .configComplexConditionQueryItem('es_point', 'zipcode_id', zipcode_id)
                 .configComplexConditionQueryItem('es_point', 'status', 1)
+                .configComplexOrder('id', 'ASC', ['id'], 'es_point')
                 .configQueryLimit(start, 5000);
 
             const count = await this.findCountOfInstance('es_point', conditions);

@@ -137,6 +137,7 @@ class ESZipcodeAction {
                 line_id, area_id, zipcode_id, 0
             );
 
+
             let end = first_end;
             while (end < count) {
                 const {record_list: next_list, end: next_end} = await ESPoint.findPointListWithLine(
@@ -145,6 +146,7 @@ class ESZipcodeAction {
                 point_list.concat(next_list);
                 end = next_end;
             }
+
 
             // console.log(point_list);
             return point_list;
