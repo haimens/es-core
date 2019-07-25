@@ -61,7 +61,6 @@ class VNZipcode extends ODInstance {
                 .configQueryLimit(start, 10);
 
 
-
             const count = await this.findCountOfInstance('es_zipcode', conditions);
 
             if (count === 0) return {record_list: [], count, end: 0};
@@ -70,6 +69,24 @@ class VNZipcode extends ODInstance {
             const record_list = await this.findInstanceListWithComplexCondition('es_zipcode', conditions);
 
             return {record_list, count, end: (parseInt(start || 0) + record_list.length)};
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    static async findZipcodeWithCode(code) {
+        try {
+            const conditions = new ODCondition();
+
+            conditions
+                .configComplexConditionKeys('es_zipcode', ['code', 'id AS zipcode_id', 'lat', 'lng', 'type'])
+                .configComplexConditionQueryItem('es_zipcode', 'code', code)
+                .configComplexConditionQueryItem('es_zipcode', 'status', 1)
+                .configQueryLimit(0, 1);
+
+            const [record] = await this.findInstanceListWithComplexCondition('es_zipcode', conditions);
+
+            return record;
         } catch (e) {
             throw e;
         }

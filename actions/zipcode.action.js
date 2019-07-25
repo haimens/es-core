@@ -31,6 +31,20 @@ class ESZipcodeAction {
         }
     }
 
+    static async findZipcodeDetail(params, body, query) {
+        try {
+            const {code} = params;
+
+            const zipcode_info = await ESZipcode.findZipcodeWithCode(code);
+
+            const feature = await this._findSingleZipcodeDetail(zipcode_info);
+
+            return {feature};
+        } catch (e) {
+            throw e;
+        }
+    }
+
     static async _findSingleZipcodeDetail(zipcode_info) {
         try {
             const {zipcode_id, type, lat, lng, code} = zipcode_info;

@@ -18,5 +18,17 @@ router.get('/all/detail', async (req, res, next) => {
     }
 });
 
+router.get('/detail/code/:code', async (req, res, next) => {
+    try {
+        const resBody = func.configSuccess(
+            await ESZipcodeAction.findZipcodeDetail(
+                req.params, req.body, req.query
+            )
+        );
+        res.json(resBody);
+    } catch (e) {
+        next(e);
+    }
+});
 
 module.exports = router;
